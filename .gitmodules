@@ -1,0 +1,6 @@
+[submodule "846a48349101e6097bbd382ca7072cd9"]
+	path = 846a48349101e6097bbd382ca7072cd9
+	url = https://gist.github.com/846a48349101e6097bbd382ca7072cd9.git
+[submodule "variables"]
+	path = variables
+	url = https://gist.github.com/846a48349101e6097bbd382ca7072cd9.git
