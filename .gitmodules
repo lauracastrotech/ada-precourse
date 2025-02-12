@@ -4,6 +4,4 @@
 [submodule "variables"]
 	path = variables
 	url = https://gist.github.com/846a48349101e6097bbd382ca7072cd9.git
-[submodule "hello_world"]
-	path = hello
-	url = https://gist.github.com/0d84a43fcf0ff058226ef970817f2821.git
+
