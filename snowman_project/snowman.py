@@ -29,18 +29,18 @@ def get_letter_from_user(wrong_guesses_list,
             print("Invalid letter please enter a single character")
         elif len(user_input_string) > 1:
             print("You can only input one letter at a time!")
-        elif user_input_string in correct_letter_guess_status:
-            print("You guessed a letter that's in the word!")
-            correct_letter_guess_status[user_input_string] = True
         elif (user_input_string in correct_letter_guess_status  
               and correct_letter_guess_status[user_input_string]):
             print("You have already guessed that letter and it's in the word!")
-        elif (user_input_string in wrong_guesses_list 
-              and not correct_letter_guess_status[user_input_string]):
+        elif user_input_string in correct_letter_guess_status:
+            correct_letter_guess_status[user_input_string] = True
+            print("You guessed a letter that's in the word!")
+        elif user_input_string in wrong_guesses_list: 
             print("You already guessed that letter and it's not in the word!")
         else:
             is_valid = True
-        
+        break
+
     return user_input_string
 
 def snowman():
@@ -55,19 +55,18 @@ def snowman():
 
     correct_letter_guess_status = build_letter_status_dict(snowman_word)
     wrong_guesses_list = []
-    # print(correct_letter_guess_status)
 
-    while (len(wrong_guesses_list)) <= SNOWMAN_MAX_WRONG_GUESSES:
+    while (len(wrong_guesses_list)) < SNOWMAN_MAX_WRONG_GUESSES:
         user_input = get_letter_from_user(wrong_guesses_list, correct_letter_guess_status)
+        # print(correct_letter_guess_status)
         if user_input in snowman_word:
-            # print("You guessed a letter that's in the word!")
             correct_letter_guess_status[user_input] = True
         else:
-            # print(f"The letter {user_input} is not in the word")
             wrong_guesses_list.append(user_input)
-    
-        # print_snowman(len(wrong_guesses_list))
-        print(f"Wrong guesses: {wrong_guesses_list}")
+        print_word_progress_string(snowman_word, correct_letter_guess_status)
+        print_snowman(len(wrong_guesses_list))
+        # print(f"Wrong guesses: {wrong_guesses_list}")
+    get_results(snowman_word, correct_letter_guess_status, wrong_guesses_list)
 
 def print_snowman(wrong_guesses_count):
     for idx in range(SNOWMAN_MAX_WRONG_GUESSES - wrong_guesses_count, SNOWMAN_MAX_WRONG_GUESSES):
@@ -102,9 +101,15 @@ def is_word_guessed(snowman_word, correct_letter_guess_statuses):
             return False
     return True
 
+def get_results(snowman_word, correct_letter_guess_statuses, wrong_guesses_list):
+    if (len(wrong_guesses_list) != 7 and  
+        correct_letter_guess_statuses):
+        print("Congrtulations, you win!")
+    else:
+        print(f"Sorry, you lose! The word was {snowman_word}")
 
-print(is_word_guessed("pepper", {"p": True, "e": False, "r": False})) #output False
+# print(is_word_guessed("pepper", {"p": True, "e": False, "r": False})) #output False
 # Invoke the function    
-# snowman()
+snowman()
 
     
