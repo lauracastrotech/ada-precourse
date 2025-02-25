@@ -3,7 +3,7 @@
 # Snowman Gameplay
 
 # Constant variable that references the hidden word 
-from wonderwords import RandomWord
+# from wonderwords import RandomWord
 
 SNOWMAN_MAX_WRONG_GUESSES = 7
 SNOWMAN_MAX_WORD_LENGTH = 8
@@ -19,11 +19,13 @@ SNOWMAN_GRAPHIC = [
 ]
 
 def snowman():
-    random_word_generator = RandomWord()
-    snowman_word = random_word_generator.word(
-        word_min_length = SNOWMAN_MIN_WORD_LENGTH, 
-        word_max_length = SNOWMAN_MAX_WORD_LENGTH)
+    # random_word_generator = RandomWord()
+    snowman_word = "snowman"
     # debug
+    # snowman_word = random_word_generator.word(
+    #     word_min_length = SNOWMAN_MIN_WORD_LENGTH, 
+    #     word_max_length = SNOWMAN_MAX_WORD_LENGTH)
+    # # debug
     print(snowman_word)
     correct_letter_guess_status = build_letter_status_dict(snowman_word)
     wrong_guesses_list = []
