@@ -23,7 +23,8 @@ def snowman():
     snowman_word = random_word_generator.word(
         word_min_length = SNOWMAN_MIN_WORD_LENGTH, 
         word_max_length = SNOWMAN_MAX_WORD_LENGTH)
-
+    # debug
+    print(snowman_word)
     correct_letter_guess_status = build_letter_status_dict(snowman_word)
     wrong_guesses_list = []
 
@@ -32,16 +33,20 @@ def snowman():
         
         if user_input in snowman_word:
             correct_letter_guess_status[user_input] = True
+            if is_word_guessed(snowman_word, 
+                       correct_letter_guess_status):
+                print("Congratulations, you win!")
+                return
+            print("correct letter dict =>",correct_letter_guess_status)
         else:
             wrong_guesses_list.append(user_input)
         print_word_progress_string(snowman_word, correct_letter_guess_status)
         print_snowman(len(wrong_guesses_list))
 
-    if is_word_guessed(snowman_word, 
-                       correct_letter_guess_status):
-        print("Congratulations, you win!")
-    else:
-        print(f"Sorry, you lose! The word was {snowman_word}")
+    # if is_word_guessed(snowman_word, 
+    #                    correct_letter_guess_status):
+    #     print("Congratulations, you win!")
+    print(f"Sorry, you lose! The word was {snowman_word}")
 
 def print_snowman(wrong_guesses_count):
     for idx in range(SNOWMAN_MAX_WRONG_GUESSES - wrong_guesses_count, SNOWMAN_MAX_WRONG_GUESSES):
